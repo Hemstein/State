@@ -1,37 +1,45 @@
+import React,{Component} from "react";
+import "./App.css"
 
-import React from "react";
+class App extends Component {
+constructor(){
+super()
+this.state={
+  Person:{
+  fullName: "Haythem Ben Jemaa",
+  bio: "A passionate React developer",
+  imageSrc:"https://assets.bitdegree.org/online-learning-platforms/storage/media/2018/08/what-is-a-web-developer.jpg",
+  Profession:"web developer"
+ }, 
+ Boolean:false,
+ mountTime: 0, // début d compteur 
 
-class App extends React.Component{
-  constructor(){
-    super()
-    this.state={
-    person:{
-    name:"Haythem Ben Jemaa",
-    bio:"ahla w sahla",
-    imge:"https://www.seokratie.de/wp-content/uploads/2019/04/bild-url-beispiel-751x501.jpg",
-    profession:"Software Developer"
-  },
-    Boolean:false}
+}  
+}
+componentDidMount() {
+setInterval(() => {
+  this.setState({mountTime:this.state.mountTime+1})
+}, 1000);
+}
 
-  }
-
-  
-  render(){
+ render() {
     return(
-      <div>
-      { this.state.Boolean ? <div>
-      <h1>{this.state.person.name}</h1>;
-      <h1>{this.state.person.bio}</h1>;
-      <img src={this.state.person.imge}/> ;
-      <h1>{this.state.person.profession}</h1>;
+   <div>
+{  this.state.Boolean ? <div>
+    <h1>Hello {this.state.Person.fullName}</h1>
+    <h1>{this.state.Person.bio}</h1>;
+    <img src={this.state.Person.imageSrc}/>;
+    <h2> {this.state.Person.Profession}</h2>;
 
-    </div>:null
-    }
-    <button onClick={()=>this.setState({Boolean:!this.state.Boolean})}>click here</button>
-    </div>
-  )
-}
+     </div>:null}
+   <button onClick={()=>this.setState({Boolean:!this.state.Boolean})}>click here </button>
+     <p>Temps depuis le montage du composant: {this.state.mountTime} secondes</p>      
+    
+  </div>
   
+ )
+}
 }
 
-export default App;
+
+export default App
